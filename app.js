@@ -10,7 +10,8 @@ var HOMEPAGE = 'index';
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded( {extend: true }));
 
-app.use(express.static('/public'));
+app.use('/public', express.static('public'));
+app.use('/angular', express.static('browser/js'))
 app.set('views', path.join(__dirname, './browser'));
 
 app.get('/', function(req, res){

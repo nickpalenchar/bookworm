@@ -4,9 +4,58 @@
   <!-- Stuff -->
   <title>Book</title>
   <link href="/public/bootstrap.min.css" rel="stylesheet" />
-
+  <script src="/public/js/angular.min.js"></script>
+  <script src="/public/js/angular-ui-router.min.js"></script>
+  <script src="/angular/module.js"></script>
+  <script src="/angular/controllers/dashboard.ctrl.js"></script>
 </head>
-<body>
-  <h1>Hello World! I'm just a humble static tag, but will soon become a cool dynamic SPA!</h1>
+<body ng-app="bookworm">
+  <div class="row">
+    <h1>Welcome to The Book Club</h1>
+  </div>
+  <div class="row">
+    <div ng-controller="dashboard" class="np-dashboard col-sm-3">
+      <div class="side-item" id="menu">
+        <ul>
+          <li>Current Book</li>
+          <li>Suggest New Book</li>
+          <li>Archive</li>
+        </ul>
+      </div>
+      <div class="side-item" id="quote-of-the-day">
+        <em>"{{quoteOfTheDay.quote}}"</em><br />
+        --{{quoteOfTheDay.author}}
+        <br>
+        <a href="#" ng-click="toggleAdd()">Submit Quote</a>
+      </div>
+      <div id="add-quote" ng-show="showAddBox">
+        <h2>This is where you add a quote.</h2>
+      </div>
+    </div>
+    <div class="main-view col-sm-6">
+      <div class="alert"></div>
+      <ui-view></ui-view>
+    </div>
+    <div class="np-sidebar col-sm-3">
+      <div class="side-item" id="update-status">
+        <h2>Update Status</h2>
+        <p>Now on page: <input></p>
+      </div>
+      <div class="side-item">
+        <h4>Current standings</h4>
+        <ol>
+          <li>Nick <em>(p. 143)</em></li>
+          <li>Yustynn <em>(p.142)</em></li>
+          <li>Travis <em>(p.89)</em></li>
+          <li>Jacqui <em>(not started)</em></li>
+        </ol>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
+
+<!--
+  All `np-` appended classes will become directives and should be replaced with tag names:
+  <div class="np-dashboard"> becomes <np-dashboard>
+-->
